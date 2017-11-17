@@ -1,0 +1,85 @@
+---
+title: "Kinematics Example"
+author: "Nathan Cooper"
+date: "November 16, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Kinematic Equations
+
++ Equations that allow us to track the position of an object.
++ Derived from the definitions of acceleration and velocity.
++ Assume a constant acceleration.
+
+## Calcualting Velocity
+
+Consider the defintion of velocity in one dimension.
+$$
+\frac{dv}{dt} = a \\
+dv = a\space dt \\
+\int dv = \int a\space dt \\
+\int dv = a\int  dt \\
+v = v_0 + a\space t
+$$
+
+Where a is the ojects acceleration, v is the speed at the end of the time interval t, $v_0$ is the initial velocity.
+
+## Calculating the Position
+
+Now consider the definition of velocity in 1 dimension.
+$$
+\frac{dx}{dt} = v \\
+dx = v\space dt \\
+\int dx = \int v\space dt \\
+\int dx = \int (v_0 + a\space t) dt \\
+\int dx = \int v_0 dt+ a\space \int t dt\\
+x = x_0 +v_0t +\frac{1}{2}at^2
+$$
+
+x is the position of the object at the end of time interval t. $x_0$ is the initial position.
+
+## In Practice
+
++ The above derivations were for 1 dimension.
++ 2 or 3 dimensional scenerios are just 2 or 3 1D equations.
++ Subscripts help keep track of different dimensions, e.g., $a_y$ or $v_z$.
++ Trigonometric functions may be needed to seperate dimensions.
+
+## Example
+
+A baseball is hit with initial velocity of 14.1 m/s at a 45 degree angle above the ground. How far from home plate does it travel before it is caught at the same height that it was hit. Treat homeplate as $x_0 = 0$m.
+
+## First calculate y for flight time.
+$$
+v_{y,0} = 14.1*sin(45^o) \\
+v_{y,0} = 9.97\space\frac{m}{s}\\
+a = -9.8\space\frac{m}{s^2} \\
+y = y_0 +v_{y,0}t +\frac{1}{2}at^2 \\
+y - y_0  = 9.97t - 4.9t^2 \\
+4.9t^2 = 9.97t \\
+t = \frac{9.97\frac{m}{s}}{4.9\frac{m}{s^2}} \\
+t = 2.03 s
+$$
+
+## Then calculate x for distance
+$$
+v_{x,0} = 14.1*sin(45^o) \\
+v_{x,0} = 9.97\space\frac{m}{s}\\
+a = 0\space\frac{m}{s^2} \\
+x = x_0 +v_{x,0}t +\frac{1}{2}at^2 \\
+x = 9.97\space\frac{m}{s} 2.03s  \\
+x = 20.2 m
+$$
+
+## A graph of the system
+
+```{r,eval=TRUE}
+t = c(0:203)/100
+x = 9.97*t
+y = 9.97*t - 4.9*t^2
+plot(x,y, xlab = "x (m)", ylab = "y (m)", col="orangered")
+```
